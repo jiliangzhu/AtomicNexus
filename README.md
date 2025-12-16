@@ -32,7 +32,7 @@ docker compose up -d
 Create `.env` at repo root (example):
 ```bash
 # RPC
-ARB_WS_RPC_URL=wss://YOUR_ARB_WS
+ARB_WS_RPC_URL=wss://arbitrum-one.publicnode.com
 ARB_HTTP_RPC_URL=https://YOUR_ARB_HTTP
 
 # Target pools (v1.0)
@@ -46,8 +46,8 @@ TTL_BLOCKS=3
 FAIL_STREAK_FUSE=5
 
 # Storage
-POSTGRES_URL=postgresql://postgres:postgres@localhost:5432/atomicnexus
-REDIS_URL=redis://localhost:6379
+POSTGRES_URL=postgresql://postgres:postgres@localhost:5433/atomicnexus
+REDIS_URL=redis://localhost:6380
 
 # Optional: sender private key for dev only (do NOT use prod funds)
 SENDER_PRIVATE_KEY=0x...

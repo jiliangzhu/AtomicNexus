@@ -21,9 +21,9 @@ export type IngestionConfig = {
 };
 
 const DEFAULTS = {
-  arbWsRpcUrl: "wss://arb1.arbitrum.io/ws",
-  postgresUrl: "postgresql://postgres:postgres@localhost:5432/atomicnexus",
-  redisUrl: "redis://localhost:6379",
+  arbWsRpcUrl: "wss://arbitrum-one.publicnode.com",
+  postgresUrl: "postgresql://postgres:postgres@localhost:5433/atomicnexus",
+  redisUrl: "redis://localhost:6380",
   uniV3PoolAddr: "0xC31E54c7a869B9FcBEcc14363CF510d1c41fa443",
   sushiV2PairAddr: "0x905dfcd5649217c42684f23958568e533c711aa3",
   wethAddr: "0x82af49447d8a07e3bd95bd0d56f35241523fbab1",
@@ -90,4 +90,3 @@ export function loadConfig(): IngestionConfig {
     redis_url,
   };
 }
-

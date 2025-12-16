@@ -11,7 +11,7 @@
     "redis": "^4.7.0"
   },
   "scripts": {
-    "dev": "pnpm -w exec tsx watch src/index.ts",
-    "start": "pnpm -w exec tsx src/index.ts"
+    "dev": "tsx watch src/index.ts",
+    "start": "tsx src/index.ts"
   }
 }

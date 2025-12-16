@@ -17,6 +17,31 @@ type TokenMeta = {
   decimals: number;
 };
 
+function attachWsHandlers(provider: WebSocketProvider, trace_id: string): void {
+  try {
+    const ws = provider.websocket as unknown as {
+      on?: (event: string, cb: (...args: unknown[]) => void) => void;
+    };
+    if (typeof ws?.on !== "function") return;
+
+    ws.on("error", (err: unknown) => {
+      logLine(SERVICE, "error", trace_id, "ws error", {
+        code: "RPC_CONNECT_FAILED",
+        error: err instanceof Error ? err.message : String(err),
+      });
+    });
+
+    ws.on("close", (...args: unknown[]) => {
+      logLine(SERVICE, "warn", trace_id, "ws closed", { args });
+    });
+  } catch (err: unknown) {
+    logLine(SERVICE, "warn", trace_id, "failed to attach ws handlers", {
+      code: "RPC_CONNECT_FAILED",
+      error: err instanceof Error ? err.message : String(err),
+    });
+  }
+}
+
 async function fetchTokenMeta(
   provider: WebSocketProvider,
   address: string,
@@ -44,6 +69,7 @@ async function main(): Promise<void> {
   });
 
   const provider = new WebSocketProvider(cfg.arb_ws_rpc_url);
+  attachWsHandlers(provider, trace_id);
   const redis = createClient({ url: cfg.redis_url });
 
   await redis.connect().catch((err: unknown) => {
