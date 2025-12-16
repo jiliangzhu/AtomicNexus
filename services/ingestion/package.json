@@ -4,11 +4,14 @@
   "private": true,
   "type": "module",
   "dependencies": {
-    "@atomicnexus/common": "workspace:*"
+    "@atomicnexus/common": "workspace:*",
+    "dotenv": "^16.4.5",
+    "ethers": "^6.13.5",
+    "pg": "^8.13.1",
+    "redis": "^4.7.0"
   },
   "scripts": {
     "dev": "pnpm -w exec tsx watch src/index.ts",
     "start": "pnpm -w exec tsx src/index.ts"
   }
 }
-
