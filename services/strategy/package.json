@@ -1,0 +1,14 @@
+{
+  "name": "@atomicnexus/strategy",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@atomicnexus/common": "workspace:*"
+  },
+  "scripts": {
+    "dev": "pnpm -w exec tsx watch src/index.ts",
+    "start": "pnpm -w exec tsx src/index.ts"
+  }
+}
+

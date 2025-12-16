@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.base.json",
+  "files": [],
+  "references": [
+    { "path": "./libs/common" },
+    { "path": "./services/ingestion" },
+    { "path": "./services/strategy" },
+    { "path": "./services/execution" },
+    { "path": "./services/api" },
+    { "path": "./services/analyzer" }
+  ]
+}
+

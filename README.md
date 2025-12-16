@@ -61,14 +61,15 @@ pnpm install
 ### 4) Run services (dev)
 In separate terminals:
 ```bash
-pnpm --filter ingestion dev
-pnpm --filter strategy dev
-pnpm --filter execution dev
-pnpm --filter api dev
+pnpm --filter @atomicnexus/ingestion dev
+pnpm --filter @atomicnexus/strategy dev
+pnpm --filter @atomicnexus/execution dev
+pnpm --filter @atomicnexus/analyzer dev
+pnpm --filter @atomicnexus/api dev
 ```
 
 ### 5) Open Swagger UI
-- http://localhost:8080 (depends on api service implementation)
+- http://localhost:8080 (API service skeleton)
 
 ---
 
@@ -79,6 +80,7 @@ contracts/evm      # Solidity executor + adapters + tests
 services/ingestion # WS subscriptions, event decode, pool state cache
 services/strategy  # find -> optimize -> risk
 services/execution # tx-build -> simulate gate -> send
+services/analyzer  # post-trade analyzer (skeleton)
 services/api       # Swagger ops API
 libs/*             # shared libs: common/evm/math
 infra/             # docker compose, migrations, monitoring
