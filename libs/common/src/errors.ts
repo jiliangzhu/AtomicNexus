@@ -3,9 +3,17 @@ export type ErrorCode =
   | "ENV_INVALID"
   | "DECODE_INVALID_LOG"
   | "DECODE_UNSUPPORTED_EVENT"
+  | "POOLSTATE_MISSING"
+  | "POOLSTATE_INVALID"
+  | "OPPORTUNITY_NO_EDGE"
+  | "SWAP_SIM_INVALID"
+  | "OPTIMIZER_INVALID_CANDIDATE"
+  | "OPTIMIZER_NO_PROFIT"
+  | "OPTIMIZER_SEARCH_FAILED"
   | "RPC_CONNECT_FAILED"
   | "REDIS_CONNECT_FAILED"
   | "REDIS_WRITE_FAILED"
+  | "REDIS_READ_FAILED"
   | "PG_CONNECT_FAILED"
   | "PG_SCHEMA_FAILED"
   | "PG_INSERT_FAILED";
@@ -38,4 +46,3 @@ export function invariant(
 ): asserts condition {
   if (!condition) throw new AtomicNexusError(code, message);
 }
-

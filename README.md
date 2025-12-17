@@ -68,6 +68,16 @@ pnpm --filter @atomicnexus/analyzer dev
 pnpm --filter @atomicnexus/api dev
 ```
 
+Dry-run opportunity finder (writes to Postgres):
+```bash
+pnpm --filter @atomicnexus/strategy dry-run -- --synthetic
+```
+
+Dry-run optimizer (synthetic plan):
+```bash
+pnpm --filter @atomicnexus/strategy optimizer:dry-run
+```
+
 ### 5) Open Swagger UI
 - http://localhost:8080 (API service skeleton)
 

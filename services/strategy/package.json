@@ -4,10 +4,16 @@
   "private": true,
   "type": "module",
   "dependencies": {
-    "@atomicnexus/common": "workspace:*"
+    "@atomicnexus/common": "workspace:*",
+    "dotenv": "^16.4.5",
+    "ethers": "^6.13.5",
+    "pg": "^8.13.1",
+    "redis": "^4.7.0"
   },
   "scripts": {
     "dev": "tsx watch src/index.ts",
-    "start": "tsx src/index.ts"
+    "start": "tsx src/index.ts",
+    "dry-run": "tsx src/opportunity-finder/dry-run.ts",
+    "optimizer:dry-run": "tsx src/optimizer/dry-run.ts"
   }
 }

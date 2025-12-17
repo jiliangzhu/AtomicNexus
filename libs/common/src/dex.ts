@@ -54,6 +54,8 @@ export type SushiV2PoolState = {
 
 export type PoolState = UniV3PoolState | SushiV2PoolState;
 
+export type Ratio = { numerator: bigint; denominator: bigint };
+
 const Q192 = 2n ** 192n;
 
 function pow10(decimals: number): bigint {
@@ -88,6 +90,17 @@ export function formatRatio(
   return `${integer.toString()}.${frac.toString().padStart(fractionDigits, "0")}`;
 }
 
+export function uniV3PriceToken1PerToken0Ratio(opts: {
+  sqrtPriceX96: bigint;
+  decimals0: number;
+  decimals1: number;
+}): Ratio {
+  return {
+    numerator: opts.sqrtPriceX96 * opts.sqrtPriceX96 * pow10(opts.decimals0),
+    denominator: Q192 * pow10(opts.decimals1),
+  };
+}
+
 export function uniV3PriceToken1PerToken0Human(opts: {
   sqrtPriceX96: bigint;
   decimals0: number;
@@ -95,9 +108,20 @@ export function uniV3PriceToken1PerToken0Human(opts: {
   fractionDigits?: number;
 }): string {
   const fractionDigits = opts.fractionDigits ?? 6;
-  const numerator = opts.sqrtPriceX96 * opts.sqrtPriceX96 * pow10(opts.decimals0);
-  const denominator = Q192 * pow10(opts.decimals1);
+  const { numerator, denominator } = uniV3PriceToken1PerToken0Ratio(opts);
   return formatRatio(numerator, denominator, fractionDigits);
+}
+
+export function v2PriceToken1PerToken0Ratio(opts: {
+  reserve0: bigint;
+  reserve1: bigint;
+  decimals0: number;
+  decimals1: number;
+}): Ratio {
+  return {
+    numerator: opts.reserve1 * pow10(opts.decimals0),
+    denominator: opts.reserve0 * pow10(opts.decimals1),
+  };
 }
 
 export function v2PriceToken1PerToken0Human(opts: {
@@ -108,8 +132,6 @@ export function v2PriceToken1PerToken0Human(opts: {
   fractionDigits?: number;
 }): string {
   const fractionDigits = opts.fractionDigits ?? 6;
-  const numerator = opts.reserve1 * pow10(opts.decimals0);
-  const denominator = opts.reserve0 * pow10(opts.decimals1);
+  const { numerator, denominator } = v2PriceToken1PerToken0Ratio(opts);
   return formatRatio(numerator, denominator, fractionDigits);
 }
-
